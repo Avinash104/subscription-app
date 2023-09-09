@@ -5,6 +5,7 @@ import RegisterModal from "./components/modals/Registermodal"
 import SubscriptionModal from "./components/modals/SubscriptionModal"
 import Navbar from "./components/navbar/Navbar"
 import "./globals.css"
+import ThemeProvider from "./providers/ThemeProvider"
 import ToastProvider from "./providers/ToastProvider"
 
 const inconsolata = Inconsolata({ subsets: ["latin"] })
@@ -24,14 +25,16 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inconsolata.className}>
-        <header className={mukta.className}>
-          <Navbar currentUser={currentUser} />
-        </header>
-        <RegisterModal />
-        <LoginModal />
-        <SubscriptionModal />
-        <ToastProvider />
-        {children}
+        <ThemeProvider>
+          <header className={mukta.className}>
+            <Navbar currentUser={currentUser} />
+          </header>
+          <RegisterModal />
+          <LoginModal />
+          <SubscriptionModal />
+          <ToastProvider />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
